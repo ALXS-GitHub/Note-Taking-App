@@ -1,0 +1,58 @@
+.menu-bar {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    background-color: var(--menu-bar-bg-color);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-bar__right {
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.menu-bar__left {
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.menu-bar__right button {
+    height: 100%;
+    width: 40px;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-bar__logo {
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.menu-bar__logo img {
+    height: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
