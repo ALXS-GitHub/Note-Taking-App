@@ -1,0 +1,16 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    // width: 100%;
+    // flex-grow: 1;
+    height: 100%;
+}
+
+.main__content { 
+    flex-grow: 1;
+}
+
+.main__sidebar {
+    border : 1px solid var(--side-bar-border-color);
+}

@@ -1,3 +1,6 @@
-import MenuBar from './MenuBar/MenuBar';
+import MenuBar from "./MenuBar/MenuBar";
+import SideBar from "./SideBar/SideBar";
+import NotePreview from "./NotePreview/NotePreview";
+import { SideBarButton } from "./Buttons";
 
-export { MenuBar };
+export { MenuBar, SideBar, SideBarButton, NotePreview };

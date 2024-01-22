@@ -27,14 +27,47 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    alias: {
-      '@/assets': resolve('src/assets'),
-      '@/components': resolve('src/components'),
-      '@/constants': resolve('src/constants'),
-      '@/hooks': resolve('src/hooks'),
-      '@/pages': resolve('src/pages'),
-      '@/store': resolve('src/store'),
-      '@/utils': resolve('src/utils'),
-    },
+    alias: [
+      {
+        find: '@components',
+        replacement: '/src/components',
+      },
+      {
+        find: '@utils',
+        replacement: '/src/utils',
+      },
+      {
+        find: '@constants',
+        replacement: '/src/constants',
+      },
+      {
+        find: '@hooks',
+        replacement: '/src/hooks',
+      },
+      {
+        find: '@store',
+        replacement: '/src/store',
+      },
+      {
+        find: '@assets',
+        replacement: '/src/assets',
+      },
+      {
+        find: '@pages',
+        replacement: '/src/pages',
+      },
+      {
+        find: '@services',
+        replacement: '/src/services',
+      },
+      {
+        find: '@types',
+        replacement: '/src/types',
+      },
+      {
+        find: '@',
+        replacement: '/src',
+      },
+    ]
   },
 })

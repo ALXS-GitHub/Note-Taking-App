@@ -17,7 +17,12 @@
 
   /* my colors */
 
-  --menu-bar-bg-color: #242424DD;
+  --primary-border-color: #474747dd;
+  --menu-bar-bg-color: #2a2a2aDD;
+  --menu-bar-border-color: #474747dd;
+  --side-bar-bg-color: #333333dd;
+  --side-bar-border-color: #474747dd;
+  --content-border-color: #474747dd;
 
 }
 
@@ -25,7 +30,7 @@
   width: 100%;
   height: 100%;
   /* border-radius: 20px; */
-  background-color: #242424AA;
+  background-color: #2a2a2aaa;
 }
 
 a {
