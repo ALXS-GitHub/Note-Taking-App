@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { SideBarButton, NotePreview } from "@components";
-import { createNote, getAllNotes } from "@services"
+// import { createNote, getAllNotes } from "@electron"
 import { NoteInfo } from "@types";
 
 import { LuFileSignature } from "react-icons/lu";
@@ -14,27 +14,27 @@ function SideBar() {
     const [notes, setNotes] = useState<NoteInfo[]>([]);
 
     const newNote = () => {
-        createNote(
-            "Untitled Note",
-            "This is a new note",
-            new Date().getTime(),
-            false,
-            "default"
-        ).then((note) => {
-            setNotes([note, ...notes]);
-        });
+        // createNote(
+        //     "Untitled Note",
+        //     "This is a new note",
+        //     new Date().getTime(),
+        //     false,
+        //     "default"
+        // ).then((note) => {
+        //     setNotes([note, ...notes]);
+        // });
     }
 
     const deleteNote = () => { // todo: remove because useless on this component
         console.log("Delete Note");
     }
 
-    useEffect(() => {
-        getAllNotes().then((notes) => {
-            setNotes(notes);
-        });
-        console.log("Notes: ", notes)
-    }, [newNote, setNotes, deleteNote]);
+    // useEffect(() => {
+    //     getAllNotes().then((notes) => {
+    //         setNotes(notes);
+    //     });
+    //     console.log("Notes: ", notes)
+    // }, [newNote, setNotes, deleteNote]);
 
     
 

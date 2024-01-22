@@ -34,6 +34,7 @@
       "@services": ["src/services"],
       "@types": ["src/types"],
       "@db": ["src/db"],
+      "@electron": ["electron"]
     }
   },
   "include": ["src", "electron"],

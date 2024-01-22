@@ -1,5 +1,15 @@
+/* eslint-disable */
 import { app, BrowserWindow, ipcMain } from "electron";
 import path from "node:path";
+const sqlite3 = require("sqlite3").verbose();
+
+const db = new sqlite3.Database("../src/db/notes.db", (err: any) => {
+    db.serialize(() => {
+        db.run(
+            "CREATE TABLE IF NOT EXISTS notes (id STRING PRIMARY KEY, title TEXT , content TEXT, lastModified INTEGER, isPinned INTEGER, color TEXT)"
+        );
+    });
+});
 
 // The built directory structure
 //
@@ -75,6 +85,14 @@ function createWindow() {
             win.close()
         }
     })
+
+    ipcMain.handle('db-query', async (event: any, sqlQuery: any) => {
+        return new Promise(res => {
+            db.all(sqlQuery, (err: any, rows:any) => {
+              res(rows);
+            });
+        });
+      });
 }
 
 // Quit when all windows are closed, except on macOS. There, it's common

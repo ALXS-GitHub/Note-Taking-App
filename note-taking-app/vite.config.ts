@@ -72,6 +72,10 @@ export default defineConfig({
         find: '@',
         replacement: '/src',
       },
+      {
+        find : '@electron',
+        replacement: '/electron',
+      }
     ]
   },
 })
