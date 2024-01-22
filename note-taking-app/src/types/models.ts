@@ -1,5 +1,5 @@
 export type NoteInfo = {
-    id: IDBValidKey;
+    id: string;
     title: string;
     content: string;
     lastModified: number;

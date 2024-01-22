@@ -1,5 +1,5 @@
 /* eslint-disable */
-const uuid = require("uuid");
+import { v4 } from "uuid";
 import { NoteInfo } from "../types";
 
 const openRequest = indexedDB.open("Notes", 1);
@@ -50,7 +50,7 @@ function createNote(
             const db = openRequest.result;
             const transaction = db.transaction("notes", "readwrite");
             const store = transaction.objectStore("notes");
-            const id = uuid.v4();
+            const id = v4();
             const request = store.add({
                 id,
                 title,
@@ -76,4 +76,8 @@ function createNote(
     });
 }
 
-export { openRequest, getNote, getAllNotes, createNote };
+function ping() {
+    console.log('pong')
+}
+
+export { openRequest, getNote, getAllNotes, createNote, ping };

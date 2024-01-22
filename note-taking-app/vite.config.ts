@@ -65,6 +65,10 @@ export default defineConfig({
         replacement: '/src/types',
       },
       {
+        find: '@db',
+        replacement: '/src/db',
+      },
+      {
         find: '@',
         replacement: '/src',
       },

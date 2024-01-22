@@ -1,3 +1,3 @@
-import { openRequest, getNote, getAllNotes, createNote } from "./notes";
+import { getNote, getAllNotes, createNote } from "./notes";
 
-export { openRequest, getNote, getAllNotes, createNote };
+export { getNote, getAllNotes, createNote };

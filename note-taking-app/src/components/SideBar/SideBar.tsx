@@ -17,9 +17,6 @@ function SideBar() {
         createNote(
             "Untitled Note",
             "This is a new note",
-            new Date().getTime(),
-            false,
-            "default"
         ).then((note) => {
             setNotes([note, ...notes]);
         });
