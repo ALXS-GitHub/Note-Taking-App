@@ -63,7 +63,7 @@ const getNote = (id: string) => {
 const createNote = (
     title: string,
     content: string,
-    lastModified: number,
+    lastModified: string,
     isPinned: boolean,
     color: string
 ) => {

@@ -1,28 +1,30 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { ipcRenderer } from 'electron';
 import { v4 } from 'uuid';
+import { NoteInfo } from "@types";
 
-const getAllNotes = async () => {
+
+const getAllNotes = async () :Promise<NoteInfo[]>  => {
     const sql = `SELECT * FROM notes`;
-    const rows = await ipcRenderer.invoke('query-db', sql);
+    const rows = await window.ipcRenderer.invoke('db-query', sql);
     return rows;
 }
 
-const getNote = (id: string) => {
+const getNote = (id: string) :Promise<any> => {
     const sql = `SELECT * FROM notes WHERE id = ?`;
-    return ipcRenderer.invoke('query-db', sql, id);
+    return window.ipcRenderer.invoke('db-query', sql, id);
 }
 
 const createNote = (
     title: string,
     content: string,
-    lastModified: number,
+    lastModified: string,
     isPinned: boolean,
     color: string
 ) => {
     const sql = `INSERT INTO notes (id, title, content, lastModified, isPinned, color) VALUES (?, ?, ?, ?, ?, ?)`;
     const id = v4();
-    return ipcRenderer.invoke('query-db', sql, id, title, content, lastModified, isPinned, color);
+    console.log('createNote', id, title, content, lastModified, isPinned, color);
+    return window.ipcRenderer.invoke('db-insert', { sql, params: [id, title, content, lastModified, isPinned, color] });
 }
 
 export { getAllNotes, getNote, createNote};

@@ -1,7 +1,7 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { SideBarButton, NotePreview } from "@components";
-// import { createNote, getAllNotes } from "@services"
+import { createNote, getAllNotes } from "@services"
 import { NoteInfo } from "@types";
 
 import { LuFileSignature } from "react-icons/lu";
@@ -12,29 +12,38 @@ import "./SideBar.scss";
 function SideBar() {
 
     const [notes, setNotes] = useState<NoteInfo[]>([]);
+    const [refreshNotes, setRefreshNotes] = useState(false); // only here to refresh the notes when a new note is created (the change of state trigger the useEffect)
 
-    const newNote = () => {
-        // createNote(
-        //     "Untitled Note",
-        //     "This is a new note",
-        //     new Date().getTime(),
-        //     false,
-        //     "default"
-        // ).then((note) => {
-        //     setNotes([note, ...notes]);
-        // });
-    }
+    const newNote = (e:any) => {
+        e.preventDefault();
 
-    const deleteNote = () => { // todo: remove because useless on this component
+        const date = new Date();
+        const formattedDate = date.toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        createNote(
+            "Untitled Note",
+            "This is a new note",
+            formattedDate,
+            false,
+            "default"
+        )
+        .then(() => {
+            setRefreshNotes(!refreshNotes);
+        });
+    };
+
+    const deleteNote = (e:any) => { // todo: remove because useless on this component
+        e.preventDefault();
         console.log("Delete Note");
-    }
+        setRefreshNotes(!refreshNotes);
+    };
 
-    // useEffect(() => {
-    //     getAllNotes().then((notes) => {
-    //         setNotes(notes);
-    //     });
-    //     console.log("Notes: ", notes)
-    // }, [newNote, setNotes, deleteNote]);
+    useEffect(() => {
+        console.log("SideBar: useEffect");
+        getAllNotes().then((notes) => {
+            setNotes(notes);
+        });
+        console.log("Notes: ", notes)
+    }, [refreshNotes]);
 
     
 

@@ -2,7 +2,7 @@ export type NoteInfo = {
     id: string;
     title: string;
     content: string;
-    lastModified: number;
+    lastModified: string;
     isPinned: boolean; // for later use
     color: string; // for later use
 }

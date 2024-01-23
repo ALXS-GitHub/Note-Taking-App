@@ -3,11 +3,14 @@ import { app, BrowserWindow, ipcMain } from "electron";
 import path from "node:path";
 const sqlite3 = require("sqlite3").verbose();
 
-const db = new sqlite3.Database("../src/db/notes.db", (err: any) => {
+const dbPath = path.resolve(__dirname, '../src/db/notes.db');
+const db = new sqlite3.Database(dbPath, (err: any) => {
+    console.log("Connected to the notes database.");
     db.serialize(() => {
         db.run(
-            "CREATE TABLE IF NOT EXISTS notes (id STRING PRIMARY KEY, title TEXT , content TEXT, lastModified INTEGER, isPinned INTEGER, color TEXT)"
+            "CREATE TABLE IF NOT EXISTS notes (id STRING PRIMARY KEY, title TEXT , content TEXT, lastModified TEXT, isPinned INTEGER, color TEXT)"
         );
+        console.log("DataBase successfully started!");
     });
 });
 
@@ -85,15 +88,25 @@ function createWindow() {
             win.close()
         }
     })
-
-    ipcMain.handle('db-query', async (event: any, sqlQuery: any) => {
-        return new Promise(res => {
-            db.all(sqlQuery, (err: any, rows:any) => {
-              res(rows);
-            });
-        });
-      });
 }
+
+// usage : window.ipcRenderer.invoke('db-query', sql);
+ipcMain.handle('db-query', async (event: any, sqlQuery: any) => {
+    return new Promise(res => {
+        db.all(sqlQuery, (err: any, rows:any) => {
+          res(rows);
+        });
+    });
+  });
+
+// usage : window.ipcRenderer.invoke('db-insert', { sql, params: [...] });
+ipcMain.handle('db-insert', async (event: any, sqlQuery: any) => {
+    return new Promise(res => {
+        db.run(sqlQuery.sql, sqlQuery.params, (err: any) => {
+          res(err);
+        });
+    });
+  });
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
