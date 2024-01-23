@@ -2,7 +2,7 @@
 // const sqlite3 = window.nodeAPI.sqlite3;
 import path from 'node:path';
 import { v4 } from 'uuid';
-import { NoteInfo } from '@types'
+import { NoteInfo } from '@types';
 import { Database } from 'sqlite3';
 
 const dbPath = path.join(__dirname, 'notes.db');

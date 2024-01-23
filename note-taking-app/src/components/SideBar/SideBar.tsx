@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { SideBarButton, NotePreview } from "@components";
-// import { createNote, getAllNotes } from "@electron"
+// import { createNote, getAllNotes } from "@services"
 import { NoteInfo } from "@types";
 
 import { LuFileSignature } from "react-icons/lu";
