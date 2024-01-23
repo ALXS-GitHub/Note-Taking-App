@@ -18,13 +18,14 @@ const createNote = (
     title: string,
     content: string,
     lastModified: string,
+    isActive: boolean,
     isPinned: boolean,
     color: string
 ) => {
-    const sql = `INSERT INTO notes (id, title, content, lastModified, isPinned, color) VALUES (?, ?, ?, ?, ?, ?)`;
+    const sql = `INSERT INTO notes (id, title, content, lastModified, isActive, isPinned, color) VALUES (?, ?, ?, ?, ?, ?, ?)`;
     const id = v4();
     console.log('createNote', id, title, content, lastModified, isPinned, color);
-    return window.ipcRenderer.invoke('db-insert', { sql, params: [id, title, content, lastModified, isPinned, color] });
+    return window.ipcRenderer.invoke('db-insert', { sql, params: [id, title, content, lastModified, isActive, isPinned, color] });
 }
 
 export { getAllNotes, getNote, createNote};

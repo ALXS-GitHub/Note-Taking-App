@@ -8,7 +8,7 @@ function NotePreview(props: { note: NoteInfo }) {
     const { note } = props
 
     return (
-        <div className="note-preview">
+        <div className={`note-preview ${note.isActive ? "active" : null}`}>
             <div className="note-preview__title">
                {note.title} 
             </div>

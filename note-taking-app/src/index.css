@@ -23,6 +23,10 @@
   --side-bar-bg-color: #333333dd;
   --side-bar-border-color: #474747dd;
   --content-border-color: #474747dd;
+  --note-preview-bg-color: #333333dd;
+  --note-preview-bg-color-hover: #474747dd;
+  --node-preview-bg-color-active: #474747dd;
+  --note-title-color: #cacacacc;
 
 }
 
@@ -30,7 +34,7 @@
   width: 100%;
   height: 100%;
   /* border-radius: 20px; */
-  background-color: #2a2a2aaa;
+  background-color: #2a2a2acc;
 }
 
 a {
@@ -91,3 +95,24 @@ button:hover {
 .non-draggable {
   -webkit-app-region: no-drag;
 }
+
+/* µ scrollbar */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #333333dd;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #474747dd;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #646464dd;
+}
+

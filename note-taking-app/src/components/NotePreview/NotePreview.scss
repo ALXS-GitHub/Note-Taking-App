@@ -1,0 +1,26 @@
+.note-preview {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: var(--note-preview-bg-color);
+    transition: background-color 0.2s ease;
+}
+
+.note-preview.active {
+    background-color: var(--note-preview-bg-color-active);
+}
+
+.note-preview:hover {
+    background-color: var(--note-preview-bg-color-hover);
+}
+
+.note-preview__title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.note-preview__last-modified {
+    font-size: 14px;
+    color: #888;
+}

@@ -8,7 +8,7 @@ const db = new sqlite3.Database(dbPath, (err: any) => {
     console.log("Connected to the notes database.");
     db.serialize(() => {
         db.run(
-            "CREATE TABLE IF NOT EXISTS notes (id STRING PRIMARY KEY, title TEXT , content TEXT, lastModified TEXT, isPinned INTEGER, color TEXT)"
+            "CREATE TABLE IF NOT EXISTS notes (id STRING PRIMARY KEY, title TEXT , content TEXT, lastModified TEXT, isActive INTEGER, isPinned INTEGER, color TEXT)"
         );
         console.log("DataBase successfully started!");
     });

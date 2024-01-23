@@ -3,6 +3,7 @@
     height: 100%;
     width: 300px;
     position: relative;
+    max-height: calc(100vh - 45px)
 }
 
 .side-bar__header {
@@ -29,5 +30,11 @@
     align-items: center;
     justify-content: space-around;
     width: 100%;
+}
+
+.side-bar__content {
+    padding: 10px;
+    max-height: calc(100% - 140px); // todo: fix this later with the header height to make it properly
+    overflow-y: auto;
 }
 

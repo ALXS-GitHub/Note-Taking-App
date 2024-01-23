@@ -1,0 +1,14 @@
+.editor {
+    height: 100%;
+    max-height: calc(100vh - 95px); // considering padding too
+    position: relative;
+}
+
+.editor__mdxeditor *:focus {
+    outline: none;
+}
+
+.editor__mdxeditor {
+    max-height: calc(100% - 0px); // todo: fix this later with the header height to make it properly
+    overflow-y: auto;
+}

@@ -24,6 +24,7 @@ function SideBar() {
             "This is a new note",
             formattedDate,
             false,
+            false,
             "default"
         )
         .then(() => {
