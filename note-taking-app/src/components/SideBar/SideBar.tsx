@@ -1,15 +1,19 @@
 import React from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useContext } from "react";
 import { SideBarButton, NotePreview } from "@components";
-import { createNote, getAllNotes } from "@services"
+import { createNote, getAllNotes, deleteNote } from "@services"
 import { NoteInfo } from "@types";
 
 import { LuFileSignature } from "react-icons/lu";
 import { FaRegTrashCan } from "react-icons/fa6";
 
+import { NoteContext } from "../../App";
+
 import "./SideBar.scss";
 
 function SideBar() {
+
+    const { currentNote, setCurrentNote } = useContext(NoteContext);
 
     const [notes, setNotes] = useState<NoteInfo[]>([]);
     const [refreshNotes, setRefreshNotes] = useState(false); // only here to refresh the notes when a new note is created (the change of state trigger the useEffect)
@@ -32,10 +36,27 @@ function SideBar() {
         });
     };
 
-    const deleteNote = (e:any) => { // todo: remove because useless on this component
+    const handleDelete = (e:any) => { // todo: remove because useless on this component
         e.preventDefault();
         console.log("Delete Note");
-        setRefreshNotes(!refreshNotes);
+
+        if (currentNote.id === undefined || currentNote.id === null || currentNote.id === "") {
+            return;
+        }
+
+        deleteNote(
+            currentNote.id.toString()
+        ).then(() => {
+            setCurrentNote({} as NoteInfo);
+            setRefreshNotes(!refreshNotes);
+        });
+    };
+
+    const handleClick = (id: string) => {
+        console.log("SideBar: handleClick");
+        console.log("id: ", id);
+        const note = notes.find((note) => note.id.toString() === id);
+        setCurrentNote(note!);
     };
 
     useEffect(() => {
@@ -58,7 +79,7 @@ function SideBar() {
                     <SideBarButton onClick={newNote}>
                         <LuFileSignature className="side-bar__header__title__icon" />
                     </SideBarButton>
-                    <SideBarButton onClick={deleteNote}>
+                    <SideBarButton onClick={handleDelete}>
                         <FaRegTrashCan className="side-bar__header__title__icon" />
                     </SideBarButton>
 
@@ -66,7 +87,7 @@ function SideBar() {
             </div>
             <div className="side-bar__content">
                 {notes.map((note) => (
-                    <NotePreview key={note.id.toString()} note={note} />
+                    <NotePreview key={note.id.toString()} note={note} onClick={(e:any) => handleClick(note.id.toString())} />
                 ))}
             </div>
         </div>

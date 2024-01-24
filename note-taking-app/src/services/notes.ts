@@ -28,4 +28,9 @@ const createNote = (
     return window.ipcRenderer.invoke('db-insert', { sql, params: [id, title, content, lastModified, isActive, isPinned, color] });
 }
 
-export { getAllNotes, getNote, createNote};
+const deleteNote = (id: string) => {
+    const sql = `DELETE FROM notes WHERE id = ?`;
+    return window.ipcRenderer.invoke('db-delete', { sql, params: [id] });
+}
+
+export { getAllNotes, getNote, createNote, deleteNote};
